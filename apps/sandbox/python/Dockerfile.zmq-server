@@ -1,0 +1,8 @@
+FROM alpine:3.15.3
+RUN mkdir /app
+RUN apk add --no-cache python3
+RUN cd /app && python3 -m venv venv
+COPY main.py /app
+COPY requirements.txt /app
+RUN /app/venv/bin/python -m pip install -r /app/requirements.txt
+CMD /app/venv/bin/python /app/main.py
